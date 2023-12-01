@@ -1,0 +1,46 @@
+﻿<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@{
+	ViewData["Title"] = "answers";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tecnical Test</title>
+	<link rel="stylesheet" href="~/css/site.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Tecnical Test</h1>
+		<p>Sebastián Cambronero Fonseca.</p>
+		<button id="showAnswersBtn">Obtain test answer</button>
+		<div id="numForFooBar" style="display: none;">@ViewBag.NumForFooBar</div>
+		<div id="fooBarResult" style="display: none;">@ViewBag.FooBarResult</div>
+		<div id="wordForCountVowels" style="display: none;">@ViewBag.WordForCountVowels</div>
+		<div id="countVowelsResult" style="display: none;">@ViewBag.CountVowelsResult</div>
+
+		<ul id="personsList" style="display: none;">
+			@foreach (var person in ViewBag.Persons)
+			{
+				<li>@person.FirstName @person.LastName, @person.Country</li>
+			}
+		</ul>
+	</div>
+	<script>
+		document.getElementById("showAnswersBtn").addEventListener("click", function () {
+			Swal.fire({
+				title: 'Respuestas del Test',
+				html: `<p>FooBar number used: ${document.getElementById('numForFooBar').innerHTML}</p>` +
+					`<p>FooBar Result: ${document.getElementById('fooBarResult').innerHTML}</p>` +
+					`<p>Word used for vowels count: ${document.getElementById('wordForCountVowels').innerHTML}</p>` +
+					`<p>Count Vowels Result: ${document.getElementById('countVowelsResult').innerHTML}</p>` +
+					`<p>People who can drive:</p>` +
+					document.getElementById('personsList').innerHTML,
+				icon: 'info'
+			});
+		});
+	</script>
+</body>
+</html>
